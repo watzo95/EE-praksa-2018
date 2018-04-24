@@ -1,0 +1,6 @@
+UX -> 5dni + feature x utezi
+Design -> 3dni + feature x utezi
+Implementacija -> 10dni + feature x utezi 
+VSE V BACKENDU
+
+Dayrate -> cena (fix price se doloci kasneje)
