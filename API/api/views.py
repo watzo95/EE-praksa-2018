@@ -4,6 +4,6 @@ from .serializers import VprasanjeSerializer, OdgovorSerializer
 from .models import Odgovori, Vprasanja
 
 # Create your views here.
-class CreateView(generics.ListCreateAPIView):
+class CreateView(generics.ListAPIView):
     queryset = Vprasanja.objects.all()
     serializer_class = VprasanjeSerializer
