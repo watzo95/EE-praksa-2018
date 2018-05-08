@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 from rest_framework.fields import SkipField
 
-from .models import Vprasanja, Odgovori
+from .models import Vprasanja, Odgovori, izracun
 
 
 class OdgovorSerializer(serializers.ModelSerializer):
@@ -19,3 +19,11 @@ class VprasanjeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vprasanja
         fields = ('vprasanje', 'odg')
+
+class IzracunSerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        many = kwargs.pop('many', True)
+        super(IzracunSerializer, self).__init__(many=many, *args, **kwargs)
+    class Meta:
+        model = izracun
+        fields = ('vpr', 'cena')

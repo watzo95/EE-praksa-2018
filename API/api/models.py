@@ -21,3 +21,7 @@ class Odgovori(models.Model):
     odgovor9 = models.CharField(max_length=200, blank=True)
     odgovor10 = models.CharField(max_length=200, blank=True)
     platforma = models.CharField(max_length=200)
+
+class izracun(models.Model):
+    vpr = models.CharField(max_length=200)
+    cena = models.IntegerField(default=0)
