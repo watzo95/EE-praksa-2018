@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 from rest_framework.fields import SkipField, CharField
 
-from .models import Feature, Name
+from .models import Feature, Name, Calculate
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 
@@ -28,7 +28,11 @@ class SkupiSerializer(serializers.ModelSerializer):
         model = Feature
         fields = ('feature_name', 'feature')
 
+class CalculateSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Calculate
+        fields = ('days', 'price')
 
 User = get_user_model()
 

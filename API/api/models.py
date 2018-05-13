@@ -10,3 +10,7 @@ class Name(models.Model):
     checked = models.BooleanField(default=False)
     time = models.CharField(max_length=200, blank=True)
     platform = models.CharField(max_length=200, blank=True)
+
+class Calculate(models.Model):
+    days = models.IntegerField(default=0)
+    price = models.FloatField(default=0)

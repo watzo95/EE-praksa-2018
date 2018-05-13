@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .serializers import SkupiSerializer
+from .serializers import SkupiSerializer, CalculateSerializer
 from .models import Feature
 from django.db.models import Sum
 
@@ -25,6 +25,19 @@ class GetFeatures(generics.ListAPIView):
     queryset = Feature.objects.all()
     serializer_class = SkupiSerializer
 
+
+@api_view(['POST'])
+def calculate(request):
+    if request.method == 'POST':
+        serializer = CalculateSerializer(data=request.data)
+        if serializer.is_valid():
+            days = int(request.data['days'])
+            price = float(request.data['price'])
+            return Response(days*price)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(data=None, status=status.HTTP_400_BAD_REQUEST)
 
 '''
 @api_view(['GET', 'POST'])
