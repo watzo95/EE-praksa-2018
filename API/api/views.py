@@ -6,8 +6,8 @@ from rest_framework.decorators import api_view
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .serializers import VprasanjeSerializer, OdgovorSerializer, IzracunSerializer
-from .models import Odgovori, Vprasanja, izracun
+from .serializers import SkupiSerializer
+from .models import Feature
 from django.db.models import Sum
 
 
@@ -20,12 +20,13 @@ from .serializers import (
     UserLoginSerializer,
     )
 
-
 # Create your views here.
-class CreateView(generics.ListAPIView):
-    queryset = Vprasanja.objects.all()
-    serializer_class = VprasanjeSerializer
+class GetFeatures(generics.ListAPIView):
+    queryset = Feature.objects.all()
+    serializer_class = SkupiSerializer
 
+
+'''
 @api_view(['GET', 'POST'])
 def vpis_racunanje(request):
     if request.method == 'GET':
@@ -54,7 +55,7 @@ def skupaj_cena(request):
     if request.method == 'GET':
         skupna_cena = izracun.objects.aggregate(Sum('cena'))
         return Response(skupna_cena)
-
+'''
 
 User = get_user_model()
 

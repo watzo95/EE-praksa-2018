@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 from rest_framework.fields import SkipField, CharField
 
-from .models import Vprasanja, Odgovori, izracun
+from .models import Feature, Name
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 
@@ -15,28 +15,19 @@ from rest_framework.serializers import (
     ValidationError
 )
 
-
-class OdgovorSerializer(serializers.ModelSerializer):
-
-   class Meta:
-    model = Odgovori
-    fields = ('odgovor1', 'odgovor2', 'odgovor3', 'odgovor4', 'odgovor5', 'odgovor6', 'odgovor7', 'odgovor8', 'odgovor9', 'odgovor10', 'platforma')
-
-
-class VprasanjeSerializer(serializers.ModelSerializer):
-    odg = OdgovorSerializer(many=True)
+class PodSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Vprasanja
-        fields = ('vprasanje', 'odg')
+        model = Name
+        fields = ('name', 'checked', 'time', 'platform')
 
-class IzracunSerializer(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        many = kwargs.pop('many', True)
-        super(IzracunSerializer, self).__init__(many=many, *args, **kwargs)
+class SkupiSerializer(serializers.ModelSerializer):
+    feature = PodSerializer(many=True)
+
     class Meta:
-        model = izracun
-        fields = ('vpr', 'cena')
+        model = Feature
+        fields = ('feature_name', 'feature')
+
 
 
 User = get_user_model()
