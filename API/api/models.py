@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from rest_framework.compat import MinValueValidator, MaxValueValidator
 
 
 class Feature(models.Model):
@@ -11,7 +12,7 @@ class Name(models.Model):
     fk = models.ForeignKey(Feature, on_delete=models.CASCADE, related_name='feature')
     name = models.CharField(max_length=500, blank=True)
     checked = models.BooleanField(default=False)
-    time = models.IntegerField(default=0)
+    time = models.FloatField(validators=[MinValueValidator(0.5), MaxValueValidator(100)])
     platform = models.CharField(max_length=200, blank=True)
 
 
