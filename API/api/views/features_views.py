@@ -1,8 +1,11 @@
 from rest_framework import generics
-from api.serializers.features_serializers import FeaturesSerializer
-from api.models import Feature
+from api.serializers.features_serializers import FeaturesSerializer, TemplateSerializer, SubFeaturesSerializer
+from api.models import Feature, Template, Name
 
 
 class GetFeatures(generics.ListAPIView):
-    queryset = Feature.objects.all()
+    queryset = Feature.objects.filter()
     serializer_class = FeaturesSerializer
+
+
+
