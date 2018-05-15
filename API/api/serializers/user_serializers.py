@@ -1,9 +1,6 @@
 from rest_framework import serializers
-from collections import OrderedDict
+from rest_framework.fields import CharField
 
-from rest_framework.fields import SkipField, CharField
-
-from .models import Feature, Name, Calculate
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 
@@ -15,31 +12,13 @@ from rest_framework.serializers import (
     ValidationError
 )
 
-class PodSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Name
-        fields = ('name', 'checked', 'time', 'platform')
-
-class SkupiSerializer(serializers.ModelSerializer):
-    feature = PodSerializer(many=True)
-
-    class Meta:
-        model = Feature
-        fields = ('feature_name', 'feature')
-
-class CalculateSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Calculate
-        fields = ('days', 'price')
-
 User = get_user_model()
 
 
 class UserCreateSerializer(ModelSerializer):
     email = EmailField(label='Email Address')
     email2 = EmailField(label='Confirm Email')
+
     class Meta:
         model = User
         fields = [
@@ -51,6 +30,7 @@ class UserCreateSerializer(ModelSerializer):
         extra_kwargs = {"password":
                             {"write_only": True}
                             }
+
     def validate(self, data):
         # email = data['email']
         # user_qs = User.objects.filter(email=email)

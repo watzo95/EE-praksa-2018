@@ -1,13 +1,14 @@
 from django.conf.urls import url, include
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import GetFeatures, UserCreateAPIView, UserLoginAPIView, calculate
+from api.views.calculator_views import CalculateView
+from api.views.features_views import GetFeatures
+from api.views.user_views import UserCreateAPIView, UserLoginAPIView
 from rest_framework import generics
 
 urlpatterns = [
-    url(r'^getFeatures/', GetFeatures.as_view(), name='getFeatures'),
-    url(r'^calculate/', calculate, name='calculate'),
-    #  url('accounts/', include('rest_registration.api.urls')),
-    url(r'^loginApi/$', UserLoginAPIView.as_view(), name="login"),
-    url(r'^registerApi/$', UserCreateAPIView.as_view(), name="register"),
+    path('get_features', GetFeatures.as_view(), name='getFeatures'),
+    path('calculate', CalculateView, name='calculate'),
+    path('login_api/', UserLoginAPIView.as_view(), name="login"),
+    path('register_api/', UserCreateAPIView.as_view(), name="register"),
 ]
