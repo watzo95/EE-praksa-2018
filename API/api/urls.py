@@ -7,7 +7,7 @@ from api.views.user_views import UserCreateAPIView, UserLoginAPIView
 from rest_framework import generics
 
 urlpatterns = [
-    path('get_features', GetFeatures.as_view(), name='getFeatures'),
+    path('features', GetFeatures.as_view(), name='getFeatures'),
     path('calculate', CalculateView, name='calculate'),
     path('login_api/', UserLoginAPIView.as_view(), name="login"),
     path('register_api/', UserCreateAPIView.as_view(), name="register"),
