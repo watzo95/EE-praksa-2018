@@ -9,7 +9,6 @@ class Feature(models.Model):
 
 class Name(models.Model):
     fk = models.ForeignKey(Feature, on_delete=models.CASCADE, related_name='feature')
-    #fk_template = models.ForeignKey(Template, on_delete=models.CASCADE, related_name='template')
     name = models.CharField(max_length=500, blank=True)
     checked = models.IntegerField(default=0)
     time = models.FloatField(validators=[MinValueValidator(0.5), MaxValueValidator(100)])
@@ -18,7 +17,7 @@ class Name(models.Model):
 class Template(models.Model):
     fk_template = models.ForeignKey(Name, on_delete=models.CASCADE, related_name='template')
     template_name = models.CharField(max_length=500, blank=True)
-    check = models.IntegerField(default=0)
+    check = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
 
 class Calculate(models.Model):
     days = models.IntegerField(default=0)

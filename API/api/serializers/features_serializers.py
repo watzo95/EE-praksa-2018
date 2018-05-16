@@ -2,22 +2,19 @@ from rest_framework import serializers
 from api.models import Name, Feature, Template
 
 
-class FilteredTemplateSerializer(serializers.ListSerializer):
-    def to_representation(self, data):
-        data = data.filter(template_name='coinbase')
-        return super(FilteredTemplateSerializer, self).to_representation(data)
-
-
 class TemplateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Template
-        list_serializer_class = FilteredTemplateSerializer
         fields = ('check', 'template_name')
 
 
 class SubFeaturesSerializer(serializers.ModelSerializer):
-    template = TemplateSerializer(many=True)
+    template = serializers.SerializerMethodField('get_temp')
+
+    def get_temp(self, templ):
+        temp = templ.template.filter(template_name='coinbase')
+        return TemplateSerializer(instance=temp, many=True).data
 
     class Meta:
         model = Name
