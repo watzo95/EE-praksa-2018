@@ -8,6 +8,10 @@ class TemplateSerializer(serializers.ModelSerializer):
         model = Template
         fields = ('check', 'template_name')
 
+    def check_template(self, template):
+        possible_choices = self.context.get("options", [])
+        return possible_choices
+
 
 class SubFeaturesSerializer(serializers.ModelSerializer):
     template = serializers.SerializerMethodField('get_temp')
