@@ -8,12 +8,9 @@ class TemplateSerializer(serializers.ModelSerializer):
         model = Template
         fields = ('check', 'template_name')
 
-class SubFeaturesSerializer(serializers.ModelSerializer):
-    template = serializers.SerializerMethodField('get_temp')
 
-    def get_temp(self, templ):
-        temp = templ.template.filter(template_name='coinbase')
-        return TemplateSerializer(instance=temp, many=True).data
+class SubFeaturesSerializer(serializers.ModelSerializer):
+    template = TemplateSerializer(many=True)
 
     class Meta:
         model = Name
@@ -26,4 +23,5 @@ class FeaturesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feature
         fields = ('feature_name', 'feature')
+
 
