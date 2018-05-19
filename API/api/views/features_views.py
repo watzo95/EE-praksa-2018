@@ -15,15 +15,15 @@ class GetTemplates(generics.ListAPIView):
 
 
 class GetCoinbase(generics.ListAPIView):
-    queryset = Feature.objects.filter(feature__template__template_name='coinbase')
+    queryset = Feature.objects.filter(feature__template__template_name='coinbase').distinct()
     serializer_class = CoinbaseFeaturesSerializer
 
 
 class GetRevolut(generics.ListAPIView):
-    queryset = Feature.objects.filter(feature__template__template_name='revolut')
+    queryset = Feature.objects.filter(feature__template__template_name='revolut').distinct()
     serializer_class = RevolutFeaturesSerializer
 
 
 class GetSnapchat(generics.ListAPIView):
-    queryset = Feature.objects.filter(feature__template__template_name='snapchat')
+    queryset = Feature.objects.filter(feature__template__template_name='snapchat').distinct()
     serializer_class = SnapchatFeaturesSerializer
