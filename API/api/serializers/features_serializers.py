@@ -17,7 +17,14 @@ class SubFeaturesSerializer(serializers.ModelSerializer):
         fields = ('name', 'template', 'time', 'platform')
 
 
+class TemplateNamesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Template
+        fields = ('template_name', 'url')
+
 # FILTERING DATA
+
 
 class CoinbaseSerializer(serializers.ModelSerializer):
     template = serializers.SerializerMethodField('get_coinbase')

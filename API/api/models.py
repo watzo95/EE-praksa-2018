@@ -19,6 +19,7 @@ class Name(models.Model):
 class Template(models.Model):
     fk_template = models.ForeignKey(Name, on_delete=models.CASCADE, related_name='template')
     template_name = models.CharField(max_length=500, blank=True)
+    url = models.URLField()
     check = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(1)], default=0)
 
 
