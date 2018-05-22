@@ -14,7 +14,7 @@ class SubFeaturesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Name
-        fields = ('name', 'template', 'time', 'platform')
+        fields = ('id', 'name', 'template', 'total_time', 'ios_developer', 'android_developer', 'backend_developer')
 
 
 class TemplateNamesSerializer(serializers.ModelSerializer):
@@ -22,6 +22,13 @@ class TemplateNamesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Template
         fields = ('template_name', 'url')
+
+
+class NameSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Name
+        fields = ('id', 'name', 'total_time', 'ios_developer', 'android_developer', 'backend_developer')
 
 # FILTERING DATA
 
@@ -35,7 +42,7 @@ class CoinbaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Name
-        fields = ('name', 'template', 'time', 'platform')
+        fields = ('id', 'name', 'template', 'total_time', 'ios_developer', 'android_developer', 'backend_developer')
 
 
 class RevolutSerializer(serializers.ModelSerializer):
@@ -47,7 +54,7 @@ class RevolutSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Name
-        fields = ('name', 'template', 'time', 'platform')
+        fields = ('id', 'name', 'template', 'total_time', 'ios_developer', 'android_developer', 'backend_developer')
 
 
 class SnapchatSerializer(serializers.ModelSerializer):
@@ -59,7 +66,7 @@ class SnapchatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Name
-        fields = ('name', 'template', 'time', 'platform')
+        fields = ('id', 'name', 'template', 'total_time', 'ios_developer', 'android_developer', 'backend_developer')
 
 
 class FeaturesSerializer(serializers.ModelSerializer):
