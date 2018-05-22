@@ -25,7 +25,7 @@ def CalculateView(request):
         sum_android *= cost_dev_day
         sum_ios *= cost_dev_day
         sum_backend *= cost_dev_day
-        return JsonResponse({'total_cost': sum_total, 'android_cost': sum_android, 'ios_cost': sum_ios, 'backend_cost': sum_backend})
+        return JsonResponse({'total_cost': sum_total, 'android_cost': sum_android, 'ios_cost': sum_ios, 'backend_cost': sum_backend, 'hourly_rate_day': cost_dev_day})
         '''
         serializer_class = NameSerializer
         queryset = Name.objects.filter(pk__in=array)
