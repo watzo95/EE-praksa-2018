@@ -11,7 +11,9 @@ def CalculateView(request):
         serializer = CalculateSerializer(data=request.data)
         if serializer.is_valid():
             days = int(request.data['days'])
-            price = float(request.data['price'])
+            ios = float(request.data['ios'])
+            android = float(request.data['android'])
+            bknd = float(request.data['bknd'])
             return Response(days*price)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
